@@ -16,7 +16,7 @@ def call_openrouter(messages, max_tokens=150, temperature=1.0):
         "max_tokens": max_tokens,
         "temperature": temperature,
         "reasoning": {
-            "effort": "none"
+            "enabled": False
         }
     }
 
