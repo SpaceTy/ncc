@@ -14,7 +14,10 @@ def call_openrouter(messages, max_tokens=150, temperature=1.0):
         "model": config.LLM_MODEL,
         "messages": messages,
         "max_tokens": max_tokens,
-        "temperature": temperature
+        "temperature": temperature,
+        "reasoning": {
+            "effort": "none"
+        }
     }
 
     try:
