@@ -1,6 +1,6 @@
 import discord
 import config
-from features import coordinates, fun, snc
+from features import coordinates, fun, snc, coin
 
 # --- Bot Setup ---
 intents = discord.Intents.default()
@@ -37,6 +37,10 @@ async def on_message(message):
         await snc.handle_snc_command(message)
     elif content_lower.startswith("!nsc"):
         await snc.handle_nsc_command(message)
+
+    # Coin Toss (!ct)
+    elif content_lower.startswith("!ct"):
+        await coin.handle_coin_toss(message)
 
 if __name__ == "__main__":
     if not config.DISCORD_BOT_TOKEN:
