@@ -1,6 +1,6 @@
 import discord
 import config
-from features import coordinates, fun, snc, coin
+from features import coordinates, fun, snc, coin, mod
 
 # --- Bot Setup ---
 intents = discord.Intents.default()
@@ -41,6 +41,13 @@ async def on_message(message):
     # Coin Toss (!ct)
     elif content_lower.startswith("!ct"):
         await coin.handle_coin_toss(message)
+
+    # Delete Messages (!delete) - Admin only
+    elif content_lower.startswith("!delete"):
+        if not message.author.guild_permissions.administrator:
+            await message.reply("You need administrator permissions to use this command.")
+            return
+        await mod.handle_delete(message)
 
 if __name__ == "__main__":
     if not config.DISCORD_BOT_TOKEN:
