@@ -42,6 +42,13 @@ async def on_message(message):
     elif content_lower.startswith("!ct"):
         await coin.handle_coin_toss(message)
 
+    # Kick Members With No Roles Joined Over A Week Ago (!kick) - Admin only
+    elif content_lower.startswith("!kick"):
+        if not message.author.guild_permissions.administrator:
+            await message.reply("You need administrator permissions to use this command.")
+            return
+        await mod.handle_kick(message)
+
     # Delete Messages (!delete) - Admin only
     elif content_lower.startswith("!delete"):
         if not message.author.guild_permissions.administrator:
