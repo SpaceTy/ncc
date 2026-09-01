@@ -6,6 +6,7 @@ from features import coordinates, fun, snc, coin, mod
 intents = discord.Intents.default()
 intents.messages = True
 intents.message_content = True
+intents.members = True
 
 client = discord.Client(intents=intents)
 
