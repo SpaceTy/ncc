@@ -1,6 +1,7 @@
 import discord
+
 import config
-from features import coordinates, fun, snc, coin, mod
+from features import coin, coordinates, fun, mod, snc
 
 # --- Bot Setup ---
 intents = discord.Intents.default()
@@ -11,7 +12,8 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
-    print(f"Bot logged in as {client.user.name}")
+    if client.user is not None:
+        print(f"Bot logged in as {client.user.name}")
     print(f"Listening on channel ID: {config.TARGET_CHANNEL_ID}")
 
 @client.event
@@ -57,5 +59,5 @@ if __name__ == "__main__":
             client.run(config.DISCORD_BOT_TOKEN)
         except discord.errors.LoginFailure:
             print("Error: Invalid Discord Bot Token. Please check your token.")
-        except Exception as e:
+        except (discord.DiscordException, OSError) as e:
             print(f"An error occurred while starting the bot: {e}")
